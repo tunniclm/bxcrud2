@@ -28,8 +28,8 @@ public class GeneratedApplication {
         router.get("/explorer/swagger.yml") { request, response, next in
             // TODO(tunniclm): Should probably just pass the root into init()
             let projectRootURL = configURL.deletingLastPathComponent()
-            let swaggerFileURL = URL(fileURLWithPath: "definitions/bx_via_prompts.yaml",
-                                     relativeTo: projectRootURL)
+            let swaggerFileURL = projectRootURL.appendingPathComponent("definitions")
+                                               .appendingPathComponent("bx_via_prompts.yaml")
             do {
                 try response.send(fileName: swaggerFileURL.path).end()
             } catch {
